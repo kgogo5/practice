@@ -2,6 +2,21 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./App.css";
 
+axios
+  .get("https://www.kmdb.or.kr/info/api/apiDetail/6")
+  .then((response) => {
+    if (response.status == 200) {
+      console.log("Loading Complate");
+      console.log(response);
+      document.querySelector(".movie").innerHTML = response.data;
+    } else {
+      console.log("failed");
+    }
+  })
+  .catch(() => {
+    console.log("failed");
+  });
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -61,6 +76,8 @@ export default class App extends Component {
             입니다.
           </p>
         </form>
+        <h2>API</h2>
+        <div className="movie"></div>
       </div>
     );
   }
