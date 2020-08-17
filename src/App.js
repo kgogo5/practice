@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./App.css";
+import CheckBox from "./components/CheckBox";
+import Massage from "./components/Massage";
+import Radio from "./components/Radio";
 
 axios
   .get("https://www.kmdb.or.kr/info/api/apiDetail/6")
   .then((response) => {
-    if (response.status == 200) {
+    if (response.status === 200) {
       console.log("Loading Complate");
       console.log(response);
-      document.querySelector(".movie").innerHTML = response.data;
+      document.querySelector(".movie").innerHTML = response.config.url;
     } else {
       console.log("failed");
     }
@@ -23,6 +26,11 @@ export default class App extends Component {
     this.state = {
       text: "입력",
       food: "한식",
+      obj: {
+        season: [],
+        massage: null,
+        texture: [],
+      },
     };
   }
   render() {
@@ -54,7 +62,7 @@ export default class App extends Component {
     return (
       <div className="content">
         <h1>Test</h1>
-        <form onSubmit={onSubmit}>
+        <form className="first" onSubmit={onSubmit}>
           <input type="text" onChange={onChange} />
           <p>
             입력한 값은 <span className="final">{this.state.text}</span>입니다.
@@ -78,6 +86,26 @@ export default class App extends Component {
         </form>
         <h2>API</h2>
         <div className="movie"></div>
+
+        <h2>Tab</h2>
+        <ul>
+          <li>
+            <button>버튼1</button>
+          </li>
+          <li>
+            <button>버튼2</button>
+          </li>
+        </ul>
+        <div className="tabArea"></div>
+
+        <h2>Form</h2>
+        <form className="seasonForm" method="post">
+          <p>여기 아래에 작성하세요.</p>
+          <CheckBox />
+          <Massage />
+          <Radio />
+          <input type="submit" id="submit" value="출력" />
+        </form>
       </div>
     );
   }

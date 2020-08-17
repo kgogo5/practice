@@ -23,12 +23,18 @@ h2 {
   font-weight: 600;
 }
 
-input {
+.first input {
   width: 100%;
   box-sizing: border-box;
 }
 
-select {
+.first select {
   width: 100%;
   padding: 1px 3px 5px;
+}
+
+.seasonForm strong {
+  margin: 5px 5px 5px 0;
+  display: inline-block;
+  font-weight: 600;
 }
