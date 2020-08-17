@@ -59,6 +59,24 @@ export default class App extends Component {
       });
     };
 
+    const onSubmitSeason = (e) => {
+      e.preventDefault();
+      const status = [];
+      if (this.state.obj.season.length == 0) {
+        status.push("계절감");
+      }
+      if (this.state.obj.massage == null) {
+        status.push("메시지");
+      }
+      if (this.state.obj.texture.length == 0) {
+        status.push("촉감");
+      }
+      alert(`${status.join(", ")} 입력해주세요!`);
+      if (status.length == 0) {
+        return console.log(JSON.stringify(this.state.obj));
+      }
+    };
+
     return (
       <div className="content">
         <h1>Test</h1>
@@ -99,11 +117,11 @@ export default class App extends Component {
         <div className="tabArea"></div>
 
         <h2>Form</h2>
-        <form className="seasonForm" method="post">
+        <form className="seasonForm" method="post" onSubmit={onSubmitSeason}>
           <p>여기 아래에 작성하세요.</p>
-          <CheckBox />
-          <Massage />
-          <Radio />
+          <CheckBox obj={this.state.obj} />
+          <Massage obj={this.state.obj} />
+          <Radio obj={this.state.obj} />
           <input type="submit" id="submit" value="출력" />
         </form>
       </div>

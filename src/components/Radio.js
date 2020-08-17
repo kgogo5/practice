@@ -12,16 +12,20 @@ const RadioArea = styled.div`
   }
 `;
 
-const Radio = () => {
+const Radio = ({ obj }) => {
+  const onChange = (props) => {
+    obj.texture = [];
+    obj.texture.push(props.target.id);
+  };
   return (
     <RadioArea>
       <strong>촉감</strong>
-      <label for="soft">부드러움</label>
-      <input type="radio" name="texture" id="soft" />
-      <label for="normal">보통</label>
-      <input type="radio" name="texture" id="normal" />
-      <label for="rough">까칠함</label>
-      <input type="radio" name="texture" id="rough" />
+      <label htmlFor="soft">부드러움</label>
+      <input type="radio" name="texture" id="soft" onChange={onChange} />
+      <label htmlFor="normal">보통</label>
+      <input type="radio" name="texture" id="normal" onChange={onChange} />
+      <label htmlFor="rough">까칠함</label>
+      <input type="radio" name="texture" id="rough" onChange={onChange} />
     </RadioArea>
   );
 };

@@ -8,7 +8,10 @@ const MassageArea = styled.div`
   }
 `;
 
-const Massage = () => {
+const Massage = ({ obj }) => {
+  const onChange = (props) => {
+    obj.massage = props.target.value;
+  };
   return (
     <MassageArea>
       <strong>메시지</strong>
@@ -18,6 +21,7 @@ const Massage = () => {
         id="massage"
         placeholder="입력"
         aria-label="메시지 입력"
+        onChange={onChange}
       />
     </MassageArea>
   );
